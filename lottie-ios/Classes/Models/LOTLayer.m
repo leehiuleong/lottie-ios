@@ -34,7 +34,13 @@
        withFramerate:(NSNumber *)framerate {
 
   _layerName = [jsonDictionary[@"nm"] copy];
-  _layerID = [jsonDictionary[@"ind"] copy];
+    NSNumber *ind;
+    if (jsonDictionary[@"ind"] == nil){
+        ind =  [NSNumber numberWithInteger: arc4random()];
+    }else{
+        ind = [NSNumber numberWithInteger:[jsonDictionary[@"ind"] intValue]];
+     }
+     _layerID = ind;
   
   NSNumber *layerType = jsonDictionary[@"ty"];
   _layerType = layerType.integerValue;
